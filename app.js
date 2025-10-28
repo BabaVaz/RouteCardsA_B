@@ -18,11 +18,11 @@ const STORAGE_KEYS = {
 
 const routesData = [
   { id: 'r1', origin: 'Old Town',         destination: 'River Park',     mode: 'walk', vibes: ['scenic', 'quiet'], illustrated: true,  notes: 'Shaded promenade by the river.', image:'images/pedestrian.png' },
-  { id: 'r2', origin: 'Central Station',  destination: 'Museum Mile',    mode: 'bus',  vibes: ['fast'],             illustrated: false, notes: 'Direct line, few stops.', image:'/images/bus.png' },
-  { id: 'r3', origin: 'Seaside',          destination: 'Cliff Lookout',  mode: 'bike', vibes: ['scenic'],           illustrated: true,  notes: 'Coastal road, gentle climb.', image:'/images/biking.png' },
-  { id: 'r4', origin: 'Market Square',    destination: 'Tech Campus',    mode: 'bus',  vibes: ['fast','busy'],      illustrated: true,  notes: 'Express during peak hours.', image:'/images/bus.png' },
-  { id: 'r5', origin: 'Botanic Garden',   destination: 'Lakehouse',      mode: 'walk', vibes: ['quiet'],            illustrated: false, notes: 'Dirt path, birdwatching.', image:'/images/pedestrian.png' },
-  { id: 'r6', origin: 'Harbor',           destination: 'Lighthouse',     mode: 'bike', vibes: ['scenic','windy'],   illustrated: false, notes: 'Open stretches, bring water.', image:'/images/biking.png' },
+  { id: 'r2', origin: 'Central Station',  destination: 'Museum Mile',    mode: 'bus',  vibes: ['fast'],             illustrated: false, notes: 'Direct line, few stops.', image:'images/bus.png' },
+  { id: 'r3', origin: 'Seaside',          destination: 'Cliff Lookout',  mode: 'bike', vibes: ['scenic'],           illustrated: true,  notes: 'Coastal road, gentle climb.', image:'images/biking.png' },
+  { id: 'r4', origin: 'Market Square',    destination: 'Tech Campus',    mode: 'bus',  vibes: ['fast','busy'],      illustrated: true,  notes: 'Express during peak hours.', image:'images/bus.png' },
+  { id: 'r5', origin: 'Botanic Garden',   destination: 'Lakehouse',      mode: 'walk', vibes: ['quiet'],            illustrated: false, notes: 'Dirt path, birdwatching.', image:'images/pedestrian.png' },
+  { id: 'r6', origin: 'Harbor',           destination: 'Lighthouse',     mode: 'bike', vibes: ['scenic','windy'],   illustrated: false, notes: 'Open stretches, bring water.', image:'images/biking.png' },
 ];
 
 
