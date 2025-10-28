@@ -1,0 +1,213 @@
+:root{
+  --bg:#0b0c0e; --panel:#111216; --card:#15171c; --text:#e7e8ea; --muted:#b6b9c0; --line:#24262c;
+  --blue:#0a84ff; --blue-weak:#dbeafe; --green:#34c759; --badge-bg:#1b1d23; --chip-bg:#1e222a;
+  --shadow:0 6px 24px rgba(0,0,0,.35); --radius:14px; --radius-sm:10px; --gap:16px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+}
+
+
+/* Light theme overrides (toggle with: document.documentElement.setAttribute('data-theme','light')) */
+html[data-theme="light"]{
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --card:#ffffff;
+  --text:#0b0c0e;
+  --muted:#475569;
+  --line:#e5e7eb;
+  --badge-bg:#f1f5f9;
+  --chip-bg:#eef2f7;
+  --shadow:0 6px 18px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:var(--font); color:var(--text);
+  background:radial-gradient(1000px 800px at 50% -20%,#0f1117,#0b0c0e);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Header */
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:16px}
+.brand{font-size:20px;font-weight:700;letter-spacing:.2px;margin:0}
+.toolbar{display:flex;gap:8px}
+
+/* Filters panel */
+.panel{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 16px 16px}
+.panel-title{font-size:14px;color:var(--muted);margin:0 0 8px}
+.filters{display:grid;gap:14px}
+.group{border:none;margin:0;padding:0}
+.group-label{font-size:13px;color:var(--muted);margin-bottom:6px}
+.choice-row{display:flex;gap:8px}
+
+/* Radios */
+.radio{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius-sm);background:#0f1117;transition:border-color .2s,background .2s,box-shadow .2s}
+.radio.highlight{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,132,255,.12)}
+.radio input[type="radio"]{margin:0}
+.radio .radio-ui{font-size:14px}
+
+/* Checkbox/select */
+.check{display:inline-flex;align-items:center;gap:10px;font-size:14px}
+.select{display:grid;gap:6px;font-size:14px}
+.select-label{color:var(--muted)}
+select{appearance:none;background:#0f1117;color:var(--text);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px}
+
+/* Actions */
+.actions{display:flex;gap:8px;margin-top:2px}
+
+/* Buttons */
+.btn{appearance:none;border:1px solid var(--line);background:#0f1117;color:var(--text);padding:10px 12px;border-radius:12px;font:inherit;line-height:1;cursor:pointer;transition:transform .04s ease,background .2s,border-color .2s,color .2s,box-shadow .2s}
+.btn:active{transform:translateY(1px)}
+.btn:disabled,.btn[disabled]{opacity:.55;cursor:not-allowed;box-shadow:none}
+.btn-primary{background:var(--blue);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(10,132,255,.35)}
+.btn-ghost{background:#0f1117;color:var(--text)}
+.btn-icon{width:40px;height:40px;border-radius:10px;display:inline-grid;place-items:center;padding:0}
+
+/* Favorite state — button-level (general) */
+.star{font-size:18px;line-height:1}
+.btn-icon[aria-pressed="true"] .star{
+  color:#fff; /* white star */
+  text-shadow: none;
+}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:var(--badge-bg);color:var(--text);font-size:12px}
+.badge-mode{background:var(--chip-bg)}
+.badge-count{background:var(--blue);color:#fff;min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:inline-grid;place-items:center;font-weight:600;font-size:12px}
+
+/* Grid + cards */
+.routes{padding:16px}
+.routes-grid{display:grid;gap:var(--gap);grid-template-columns:1fr}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.card-media{
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#0f1117;
+  position: relative; /* allow overlayed favorite */
+}
+.card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.media-skeleton{width:100%;height:100%;background:linear-gradient(180deg,#15171c,#101216)}
+
+/* Favorite overlay on media */
+.card-media .btn-icon[data-action="toggle-fav"]{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  background: rgba(0,0,0,.45);
+  border-color: transparent;
+  backdrop-filter: saturate(120%) blur(2px);
+}
+.card-media .btn-icon[data-action="toggle-fav"][aria-pressed="true"] .star{
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(52,199,89,.35);
+}
+
+.card-body{padding:12px;display:grid;gap:10px}
+.badge-row{display:flex;gap:8px;align-items:center}
+.mode-icon{width:16px;height:16px;display:inline-block}
+
+/* Larger vibes chip */
+.badge[data-vibes]{
+  font-size: 13px;
+  padding: 7px 12px;
+}
+
+.card-title{margin:0;font-size:16px;font-weight:700;letter-spacing:.2px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.card-title .arrow{color:var(--muted)}
+.card-sub{margin:0;color:var(--muted);font-size:14px;line-height:1.35}
+
+/* Card actions (may be unused if favorite is overlayed) */
+.card-actions{display:flex;justify-content:flex-end;padding:8px 8px 10px;border-top:1px solid var(--line)}
+
+/* Empty state */
+.empty{border:1px dashed var(--line);border-radius:var(--radius);padding:28px 16px;display:grid;place-items:center;gap:10px;color:var(--muted);background:#0f1117}
+.empty-illustration{font-size:28px}
+
+/* A11y util */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* Make the Sort trigger fill remaining space in Actions row */
+.btn-stretch { flex: 1; text-align: left; }
+
+/* Dropdown (details/summary) */
+.menu { position: relative; }
+.menu summary { list-style: none; }
+.menu summary::-webkit-details-marker { display: none; } /* hide default marker */
+.menu .chev { opacity: .7; margin-left: 6px; }
+
+/* Popover panel */
+.menu-popover{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;                /* match trigger width */
+  z-index: 10;
+  display: none;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-top: 6px;
+  box-shadow: var(--shadow);
+  padding: 6px;
+}
+
+/* Show popover when open */
+.menu[open] .menu-popover{ display: block; }
+
+/* Items */
+.menu-item{
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.menu-item:hover{ background: rgba(255,255,255,.06); }
+html[data-theme="light"] .menu-item:hover{ background: rgba(0,0,0,.05); }
+
+/* Make the Sort dropdown fill remaining space */
+.actions > .menu { 
+  flex: 1;          /* grow the <details> */
+  min-width: 0;     /* allow it to actually expand */
+}
+.actions > .menu > summary {
+  display: block;   /* summary is list-item by default */
+  width: 100%;      /* fill the details width */
+  text-align: left; /* optional, matches your button look */
+}
+
+.badge[data-vibes]{ font-size: 15px; padding: 8px 14px; }
+
+/* === Favorite: ACTIVE state === */
+/* Works if you set aria-pressed="true" on the star button */
+.card-media .btn-icon[data-action="toggle-fav"][aria-pressed="true"] {
+  border-radius: var(--radius-sm);
+  background: var(--blue); /* same blue as .btn-primary */
+  box-shadow: 0 6px 18px rgba(10,132,255,.20);
+  border-color: transparent;
+}
+.card-media .btn-icon[data-action="toggle-fav"][aria-pressed="true"] .star,
+.card-media .btn-icon[data-action="toggle-fav"][aria-pressed="true"] svg path,
+.card-media .btn-icon[data-action="toggle-fav"][aria-pressed="true"] svg circle {
+  color: #fff;
+  fill: #fff;
+  stroke: none;
+}
+
+/* Also works if you add .is-favorited to the <article class="card"> */
+.card.is-favorited {
+  border-color: rgba(10,132,255,.35); /* blue tinted border */
+  box-shadow: 0 8px 24px rgba(10,132,255,.08), var(--shadow);
+}
+.card.is-favorited .btn-icon[data-action="toggle-fav"] .star {
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Responsive */
+@media (min-width:640px){.routes-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.routes-grid{grid-template-columns:repeat(3,1fr)}}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Route Cards A→B</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <h1 class="brand">Route Cards <span aria-hidden="true">A→B</span></h1>
+
+    <div class="toolbar">
+      <!-- Sort toggle (asc/desc) -->
+     
+
+      <!-- Show Favorites; badge updates count -->
+      <button id="show-favorites-btn" class="btn btn-ghost" type="button" aria-label="Show favorites">
+        Favorites <span id="favorites-count" class="badge badge-count" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2 class="panel-title">Filters</h2>
+
+    <form id="filters-form" class="filters" autocomplete="off">
+      <!-- Mode (radios) -->
+      <fieldset class="group">
+        <legend class="group-label">Mode</legend>
+        <div id="mode-radios" class="choice-row">
+          <label class="radio">
+            <input type="radio" name="mode" value="walk" id="mode-walk" />
+            <span class="radio-ui">Walk</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="mode" value="bike" id="mode-bike" />
+            <span class="radio-ui">Bike</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="mode" value="bus" id="mode-bus" />
+            <span class="radio-ui">Bus</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Illustrated only (checkbox) -->
+      <label class="check">
+        <input type="checkbox" id="illustrated-only" />
+        <span>Illustrated only</span>
+      </label>
+
+      <!-- Vibe filter (single value) -->
+      <details class="menu" id="vibe-menu">
+        <summary class="btn btn-ghost btn-stretch" aria-haspopup="menu" aria-expanded="false">
+          <span data-vibe-label>Vibe: Any</span> <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="menu-popover" role="menu" aria-label="Vibe options">
+          <button type="button" class="menu-item" data-value="any">Any</button>
+          <button type="button" class="menu-item" data-value="scenic">Scenic</button>
+          <button type="button" class="menu-item" data-value="quiet">Quiet</button>
+          <button type="button" class="menu-item" data-value="fast">Fast</button>
+          <button type="button" class="menu-item" data-value="busy">Busy</button>
+          <button type="button" class="menu-item" data-value="windy">Windy</button>
+        </div>
+      </details>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button id="apply-btn" class="btn btn-primary" type="button" disabled>Apply filters</button>
+        <button id="reset-btn" class="btn btn-ghost" type="button">Reset</button>
+        <!-- Sort dropdown -->
+<details class="menu" id="sort-menu">
+  <summary class="btn btn-ghost btn-stretch" aria-haspopup="menu" aria-expanded="false">
+    <span data-sort-label>Sort</span> <span class="chev" aria-hidden="true">▾</span>
+  </summary>
+  <div class="menu-popover" role="menu" aria-label="Sort options">
+    <button type="button" class="menu-item" data-action="sort" data-key="distance" data-dir="asc">Distance (Km)</button>
+    <button type="button" class="menu-item" data-action="sort" data-key="duration" data-dir="desc">Duration </button>
+  </div>
+</details>
+        <!-- Optional: Random
+        <button id="random-btn" class="btn btn-ghost" type="button">Random</button>
+        -->
+      </div>
+    </form>
+  </section>
+
+  <main class="routes">
+    <h2 class="visually-hidden">Routes</h2>
+    <div id="routes-grid" class="routes-grid" aria-live="polite"></div>
+  </main>
+
+  <!-- Card template (blueprint) -->
+  <template id="route-card-template">
+    <article class="card" data-id>
+      <div class="card-media">
+  <div class="media-skeleton" aria-hidden="true"></div>
+
+  <!-- Favorite overlay -->
+  <button class="btn btn-icon" type="button"
+          aria-pressed="false"
+          title="Toggle favorite" data-action="toggle-fav">
+    <span class="star" aria-hidden="true">★</span>
+    <span class="visually-hidden">Favorite</span>
+  </button>
+</div>
+
+      <div class="card-body">
+        <div class="badge-row">
+          <span class="badge badge-mode">
+            <img data-mode-icon alt="" class="mode-icon" />
+            <span data-mode></span>
+          </span>
+          <span class="badge" data-vibes></span>
+        </div>
+
+        <h3 class="card-title">
+          <span data-origin></span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span data-destination></span>
+        </h3>
+
+        <p class="card-sub" data-notes></p>
+      </div>
+
+
+    </article>
+  </template>
+
+  <!-- Empty state template -->
+  <template id="empty-state-template">
+    <article class="empty">
+      <div class="empty-illustration" aria-hidden="true">🗺️</div>
+      <p class="empty-text">No routes found. Try different filters.</p>
+    </article>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
